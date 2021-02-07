@@ -54,6 +54,13 @@ export async function initGitHub(setup: Setup, config: any, options: any): Promi
     return reject("Could not determine Project ID, can't set up GitHub workflow.", { exit: 1 });
   }
 
+  if (!setup.config.hosting) {
+    return reject(
+      `The project is not setup with Hosting, Please use ${bold("firebase init hosting")} instead`,
+      { exit: 1 }
+    );
+  }
+
   logger.info();
 
   // Find existing Git/Github config
